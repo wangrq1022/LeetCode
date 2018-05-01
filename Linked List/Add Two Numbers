@@ -1,0 +1,46 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* getNewNode(int val){
+    struct ListNode* p;
+    
+    p = (struct ListNode*)malloc(sizeof(struct ListNode));    
+    p->val = val;
+    p->next = NULL;
+
+    return p;
+}
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    
+    struct ListNode  *l3=NULL;
+    struct ListNode **pp=NULL;
+    int bit=0, v0, v1, v2;
+    
+    pp = &l3;
+    
+    while(l1||l2){
+        
+        v1 = (l1)? l1->val : 0;
+        v2 = (l2)? l2->val : 0;     
+        v0 = (v1 + v2) + bit;
+                  
+        *pp = getNewNode(v0%10);        
+        bit = (v0<10)? 0 : 1;
+        
+        pp = &(*pp)->next;        
+        l1 = (l1)? l1->next : NULL;
+        l2 = (l2)? l2->next : NULL;     
+    }
+    
+    if(bit){
+        *pp = getNewNode(bit);      
+    }
+    
+    return l3;
+}
