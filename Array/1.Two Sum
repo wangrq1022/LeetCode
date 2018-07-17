@@ -9,8 +9,6 @@ int* twoSum(int* nums, int numsSize, int target) {
   
     p = malloc(2*sizeof(int));
     n = numsSize-1;
-  
-    
     for(i=0;i<n;i++){
         for(j=i+1;j<numsSize;j++){          
             if(*(nums+i)+*(nums+j)==target){
@@ -19,9 +17,7 @@ int* twoSum(int* nums, int numsSize, int target) {
                 return p;
             }         
         }       
-    }
-
-       
+    }       
     return NULL;
 }
 */
@@ -69,6 +65,7 @@ int* twoSum(int* nums, int numsSize, int target) {
     p = malloc(2*sizeof(int));
     p[0] = pWalk->sub;
     p[1] = pFind->sub;
-          
+
+    free(pTable);
     return p;
 }
